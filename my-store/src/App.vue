@@ -2,9 +2,20 @@
   <v-app>
     <v-app-bar
       app
-      color="primary"
+      color="#46CB90"
       dark
-    >
+      min-height="90px"
+      
+      >
+      <div>
+      <v-img
+          contain
+          src="https://i.imgur.com/451GTdB.png"
+          transition="scale-transition"
+          width="200"
+        />
+        </div>
+    
       
 
       <v-spacer></v-spacer>
