@@ -1,5 +1,6 @@
 <template>
   <v-app>
+
     <v-app-bar
       app
       color="#46CB90"
@@ -7,22 +8,21 @@
       min-height="90px"
       
       >
-      <v-row>
-        <v-col>
+      <div>
       <v-img
           contain
           src="https://i.imgur.com/451GTdB.png"
           transition="scale-transition"
           width="200"
         />
-        </v-col>
-      <v-col >
-        <v-btn  @click="logOut" width="500" >
+      </div>
+      <v-spacer></v-spacer>
+        <div>
+        <v-btn @click="logOut" align-end>
         Sign Out
       </v-btn>
-      </v-col>
-      </v-row>
-      <v-spacer></v-spacer>
+        </div>
+      
 
     </v-app-bar>
     <v-content>
@@ -43,6 +43,7 @@ export default {
       });
       }
   },
+ 
 }
 
 </script>

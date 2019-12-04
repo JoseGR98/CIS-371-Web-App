@@ -78,6 +78,7 @@ export default {
     doSignIn() {
         AppAUTH.signInWithEmailAndPassword(this.userEmail, this.userPassword)
   .then(() => {
+    this.isLoggedIn = true;
     this.$router.push({ path: "/StorePage" });
   })
   .catch((err) => {
