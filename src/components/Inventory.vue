@@ -1,38 +1,42 @@
 
 <template>
   <v-container>
-      <h1> THIS IS inventory </h1>   
-              <li v-for="productID of inventory"
-              v-bind:key="productID['.key']">{{ProductID}}
-              </li>
+      <h1> THIS IS inventory </h1>
+        <div>
+            
+            <tr v-for="(products, pos) in products" :key="pos">
+            <td>{{products.product}}</td>
+            <td>{{products.quantity}}</td>
+            <td>{{products.price}}</td>
+            <v-btn @click="Sale" color="primary">Buy Now!</v-btn>
+            </tr>
+            
+        </div> 
   </v-container>
 </template>
 
 <script>
-//import { AppDB } from "../db-init.js";
+import { AppDB } from "../db-init.js";
 export default {
   name: 'Inventory',
 
     data: () => ( {
-      price: "",
-      product: "",
-      quantity: "",
-  } ),
-
-
+      products: []
+    } ),
+    mounted() {
+        AppDB.ref("inventory").on("child_added", this.additem);
+    },
   methods: {
-      buyItem(){
-
-
-
+      additem(snapshot){
+        const item = snapshot.val();
+        this.products.push({...item, mykey:snapshot.key})
       }
+      //sale(){}
   }
 }
 </script>
 
 <style>
-.products{
-    display: inline;
-}
+
 
 </style>
