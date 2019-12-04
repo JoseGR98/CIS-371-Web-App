@@ -28,7 +28,6 @@ export default {
 
     data: () => ( {
       products: [],
-      keys: []
     } ),
     mounted() {
         AppDB.ref("inventory").on("child_added", this.additem);
@@ -44,29 +43,8 @@ export default {
       additem(snapshot){
         const item = snapshot.val();
         this.products.push({...item, mykey:snapshot.key})
-        this.keys.push({mykey:snapshot.key})
-      },
-    sales(){
-    
-    AppDB.ref("orderHistory/" + this.userID)
-    .push()
-    .set({
-        product: this.productName,
-        quantity: this.quantity,
-        price: this.price,
-        typeOfTransaction: "Buying"
-  })
-    this.remover()
-  },
-    remover(){
-      this.userID.foreach((keys) =>
-      {
-        AppDB.ref("inventory").child(keys).remove();
-    });
-    }
       }
-         }
-  
+ }}
 
 </script>
 
