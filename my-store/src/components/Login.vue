@@ -21,14 +21,14 @@
               <v-col cols="12">
                 <v-text-field 
                 label="Email" 
-                hint="We promise not to send spam"
-                persistent-hint
+            
                 required
                 v-model="newEmail"
                 ></v-text-field>
               </v-col>
               <v-col>
-                <v-text-field label="Password" type="password" v-model="newPassword" required></v-text-field>
+                <v-text-field label="Password" type="password" v-model="newPassword" hint="Must contain 6 or more characters"
+                persistent-hint required></v-text-field>
               </v-col>
               
             </v-row>

@@ -6,6 +6,7 @@
       color="#46CB90"
       dark
       min-height="90px"
+      hide-on-scroll="true"
       
       >
       <div>
@@ -17,8 +18,11 @@
         />
       </div>
       <v-spacer></v-spacer>
+      <v-btn rounded="true" @click="goToHistory" > MY ACCOUNT
+        </v-btn>
         <div>
-        <v-btn @click="logOut" align-end>
+          
+        <v-btn rounded="true"  @click="logOut" align-end>
         Sign Out
       </v-btn>
         </div>
@@ -41,8 +45,12 @@ export default {
       AppAUTH.signOut().then(() => {
       this.$router.push({ path: "/"});
       });
-      }
+      },
+    goToHistory() {
+      this.$router.push({ path: "/MyAccount" });
+    }
   },
+
  
 }
 
