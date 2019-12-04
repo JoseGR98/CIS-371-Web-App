@@ -105,6 +105,12 @@ export default {
   form {
     width: 100%;
   }
+  #submitF, #resetF {
+    margin-left: 10px;
+    padding: 5px;
+    border: solid black;
+    background: lightblue;
+  }
   footer {
     text-align: center;
     width: 80%;
@@ -117,8 +123,9 @@ export default {
     padding: 1% 3%;
     border-radius: 0.8em;
   }
-  #fname, #lname, #email {
+  #fname, #lname, #email, #state, #comments, #number {
     width: 100%;
+    background: white;
   }
   .image-container {
     text-align: center;
@@ -128,7 +135,6 @@ export default {
   }
   .socialmedia {
     display: inline;
-    width: 20%;
     margin: 3%;
   }
   .ul-form {
@@ -159,9 +165,12 @@ export default {
       padding: 1.5%;
       overflow: auto;
     }
-    #fname, #lname, #email {
-      width: 50%;
-    } 
+    #fname, #lname, #email, #state, #number {
+      width: 50%; 
+    }
+    #comments {
+      width: 100%;
+    }
     nav {
       text-align: center;
     }

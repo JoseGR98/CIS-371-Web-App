@@ -30,9 +30,14 @@
 
                 <p>Currently we are only available in one place, we do not have enough resources to expand in more places. However, we are working hard to be present in more locations, even in your favorite city! In the meantime, you can come to our unique and fantastic store.</p>
 
-                <div id="map">
-                </div>
-                
+                 <div class="google-map" ref="googleMap"></div>
+                  <template v-if="Boolean(this.google) && Boolean(this.map)">
+                    <slot
+                      :google="google"
+                      :map="map"
+                    />
+                  </template>
+
             </article>
 
             <article>
@@ -59,10 +64,35 @@
 
 <script>
 //import { AppDB } from "../db-init.js";
-//import GoogleMapsLoader from 'google-maps'
-export default {
-  name: 'StorePage4',
+//import GoogleMapsApiLoader from 'google-maps-api-loader';
 
+export default {
+  name: 'StorePage4'
+  /*props: {
+    mapConfig: Object,
+    apiKey: String,
+  },
+  data() {
+    return {
+      google: null,
+      map: null
+    }
+  },
+  async mounted() {
+    const googleMapApi = await GoogleMapsApiLoader({
+      apiKey: this.apiKey
+    })
+    this.google = googleMapApi
+    this.initializeMap()
+  },
+  methods: {
+    initializeMap() {
+      const mapContainer = this.$refs.googleMap
+      this.map = new this.google.maps.Map(
+        mapContainer, this.mapConfig
+      )
+    }
+  }
   /*mounted: function () {
     GoogleMapsLoader.KEY = 'AIzaSyBZzyMvh7kv6J48P2WOQHWXtxWwz1NsYeA';
     GoogleMapsLoader.load(function(google) {
@@ -77,9 +107,8 @@ export default {
 </script>
 
 <style scoped>
-  #map{
+  .Map {
     height: 400px;
-    width: 90%;
-    margin: auto;
+    width: 50%;
   }
 </style>

@@ -69,7 +69,6 @@ export default {
         AppAUTH.createUserWithEmailAndPassword(this.newEmail, this.newPassword)
   .then(() => {
     this.dialog = false;
-    
   })
   .catch((err) => {
     alert("Error " + err);

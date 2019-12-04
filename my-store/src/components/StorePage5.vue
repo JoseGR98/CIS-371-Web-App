@@ -30,106 +30,33 @@
                     <legend>Basic information</legend>
 
                     <label for="fname">First Name *</label>
-                        <input type="text" id="fname" name="fname" placeholder="John" required>
+                        <input type="text" id="fname" name="fname" placeholder="John" v-model="textF" required>
 
                     <label for="nlame">Last Name *</label>
-                        <input type="text" id="lname" name="lname" placeholder="Doe" required>
+                        <input type="text" id="lname" name="lname" placeholder="Doe" v-model="textF" required>
 
                     <label for="email">Email *</label>
-                        <input type="email" id="email" name="email" placeholder="address@example.com" required>
+                        <input type="email" id="email" name="email" placeholder="address@example.com" v-model="textF" required>
 
-                    <label for="state">State</label>
-                        <select id="state" name="state">
-                            <option value="AL">Alabama</option>
-                            <option value="AK">Alaska</option>
-                            <option value="AZ">Arizona</option>
-                            <option value="AR">Arkansas</option>
-                            <option value="CA">California</option>
-                            <option value="CO">Colorado</option>
-                            <option value="CT">Connecticut</option>
-                            <option value="DE">Delaware</option>
-                            <option value="DC">District Of Columbia</option>
-                            <option value="FL">Florida</option>
-                            <option value="GA">Georgia</option>
-                            <option value="HI">Hawaii</option>
-                            <option value="ID">Idaho</option>
-                            <option value="IL">Illinois</option>
-                            <option value="IN">Indiana</option>
-                            <option value="IA">Iowa</option>
-                            <option value="KS">Kansas</option>
-                            <option value="KY">Kentucky</option>
-                            <option value="LA">Louisiana</option>
-                            <option value="ME">Maine</option>
-                            <option value="MD">Maryland</option>
-                            <option value="MA">Massachusetts</option>
-                            <option value="MI" selected>Michigan</option>
-                            <option value="MN">Minnesota</option>
-                            <option value="MS">Mississippi</option>
-                            <option value="MO">Missouri</option>
-                            <option value="MT">Montana</option>
-                            <option value="NE">Nebraska</option>
-                            <option value="NV">Nevada</option>
-                            <option value="NH">New Hampshire</option>
-                            <option value="NJ">New Jersey</option>
-                            <option value="NM">New Mexico</option>
-                            <option value="NY">New York</option>
-                            <option value="NC">North Carolina</option>
-                            <option value="ND">North Dakota</option>
-                            <option value="OH">Ohio</option>
-                            <option value="OK">Oklahoma</option>
-                            <option value="OR">Oregon</option>
-                            <option value="PA">Pennsylvania</option>
-                            <option value="RI">Rhode Island</option>
-                            <option value="SC">South Carolina</option>
-                            <option value="SD">South Dakota</option>
-                            <option value="TN">Tennessee</option>
-                            <option value="TX">Texas</option>
-                            <option value="UT">Utah</option>
-                            <option value="VT">Vermont</option>
-                            <option value="VA">Virginia</option>
-                            <option value="WA">Washington</option>
-                            <option value="WV">West Virginia</option>
-                            <option value="WI">Wisconsin</option>
-                            <option value="WY">Wyoming</option>
-                        </select>
-                        <p>Fields marked with * are required</p>
-                </fieldset>
+                    <label for="number">Phone Number</label>
+                        <input type="tel" id="number" name="number" placeholder="616-466-7741" v-model="numberF">
 
-                <fieldset>
-                    <legend>How did you find us? (Places where you have seen us)</legend>
-                    <ul class="ul-form">
-                        <li>
-                            <input id="advertisement" type="checkbox" name="advertisement" value="Advertisement">
-                            <label for="advertisement">Advertisement</label>
-                        </li>
-                        <li>
-                            <input id="internet" type="checkbox" name="internet" value="Internet">
-                            <label for="internet">Internet</label>
-                        </li>
-                        <li>
-                            <input id="recommendation" type="checkbox" name="recommendation" value="Recommendation">
-                            <label for="recommendation">Recommendation</label>
-                        </li>
-                        <li>
-                            <input id="commercial" type="checkbox" name="commercial" value="Commercials">
-                            <label for="commercial">Commercials</label>
-                        </li>
-                    </ul>
+                    <p>Fields marked with * are required</p>
                 </fieldset>
 
                 <fieldset>
                     <legend>Topic of the problem</legend>
                     <ul class="ul-form">
                         <li>
-                            <input id="purchases" type="radio" name="owner" value="Purchases">
+                            <input id="purchases" type="radio" value="Purchases" name="purchases" v-model="radioF">
                             <label for="purchases">Purchases</label>
                         </li>
                         <li>
-                            <input id="sellings" type="radio" name="owner" value="Sellings">
+                            <input id="sellings" type="radio" value="Sellings" name="sellings" v-model="radioF">
                             <label for="sellings">Sellings</label>
                         </li>
                         <li>
-                            <input id="payments" type="radio" name="owner" value="Payments">
+                            <input id="payments" type="radio" value="Payments" name="payments" v-model="radioF">
                             <label for="payments">Payments</label>
                         </li>
                     </ul>			
@@ -137,13 +64,13 @@
 
                 <fieldset>
                     <legend>Describe your problem</legend>
-                    <textarea name="comment" rows="4" cols="35" placeholder="Include as many details as possible"></textarea>
+                    <textarea id="comments" name="comment" rows="4" cols="35" v-model="textareaF" placeholder="Include as many details as possible"></textarea>
                 </fieldset>
 
                 <fieldset>
                     <legend>Everything ready?</legend>
-                    <input type="submit" value="Send">
-                    <input type="reset" value="Reset">
+                    <button id="submitF" v-on:click="submitF">Submit</button>
+                    <button id="resetF" v-on:click="resetF">Reset</button>
                 </fieldset>
             </form>
             
@@ -163,7 +90,26 @@ export default {
   name: 'StorePage5',
 
   data: () => ( {
-
-  } )
+        form: {
+            firstName: '',
+            lastName: '',
+            email: '',
+            number: '',
+            problem: '',
+            description: ''
+        }
+  } ),
+  methods: {
+      submitF() {
+        alert('Form Submitted!')
+      },
+      resetF() {
+        document.getElementById("#fname").value = "";
+        document.getElementById("#lname").value = "";
+        document.getElementById("#email").value = "";
+        document.getElementById("#number").value = "";
+        document.getElementById("#comments").value = "";
+      }
+  }
 }
 </script>
