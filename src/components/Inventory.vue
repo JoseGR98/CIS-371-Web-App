@@ -14,8 +14,7 @@
             <td>{{products.product}}</td>
             <td>{{products.quantity}}</td>
             <td>${{products.price}}</td>
-            </tr>
-            
+            </tr>    
         </div> 
   </v-container>
 </template>
