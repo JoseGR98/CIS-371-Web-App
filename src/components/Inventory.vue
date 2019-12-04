@@ -13,8 +13,7 @@
             <tr v-for="(products, pos) in products" :key="pos">
             <td>{{products.product}}</td>
             <td>{{products.quantity}}</td>
-            <td>{{products.price}}</td>
-            <v-btn @click="sales" color="primary">Buy Now!</v-btn>
+            <td>${{products.price}}</td>
             </tr>
             
         </div> 
@@ -28,7 +27,8 @@ export default {
   name: 'Inventory',
 
     data: () => ( {
-      products: []
+      products: [],
+      keys: []
     } ),
     mounted() {
         AppDB.ref("inventory").on("child_added", this.additem);
@@ -44,13 +44,10 @@ export default {
       additem(snapshot){
         const item = snapshot.val();
         this.products.push({...item, mykey:snapshot.key})
+        this.keys.push({mykey:snapshot.key})
       },
     sales(){
-        AppDB.ref("inventory").push().set({
-        product: this.productName,
-        quantity: this.quantity,
-        price: this.price
-  });
+    
     AppDB.ref("orderHistory/" + this.userID)
     .push()
     .set({
@@ -58,23 +55,29 @@ export default {
         quantity: this.quantity,
         price: this.price,
         typeOfTransaction: "Buying"
-  });
+  })
+    this.remover()
+  },
+    remover(){
+      this.userID.foreach((keys) =>
+      {
+        AppDB.ref("inventory").child(keys).remove();
+    });
+    }
       }
-  }
-}
+         }
+  
+
 </script>
 
 <style>
-.Grid {background-color: #fff; margin: 5px 0 10px 0; border: solid 1px #525252; border-collapse:collapse; font-family:Calibri; color: #474747;}
+.Grid {margin: 5px 0 10px 0; border: solid 1px;}
 
 .Grid td {
-
       padding: 20px;
-
       border: solid 1px black; }
 
 .Grid th  {
-
       padding : 40px 20px;
       font-size: 0.9em; }
 

@@ -12,7 +12,7 @@
                 </tr>
             </th>
             <tr v-for="(products, pos) in products" :key="pos">
-            <td>{{products.price}}</td>
+            <td>{{pos}}</td>
             <td>{{products.product}}</td>
             <td>{{products.quantity}}</td>
             <td>{{products.typeOfTransaction}}</td>
@@ -51,14 +51,5 @@ export default {
 </script>
 
 <style>
-.Grid { margin: 5px 0 10px 0; border: solid 1px #525252;}
-
- td {
-      padding: 2px;
-      border: solid 1px black; }
-
- th  {
-      padding : 40px 20px;
-      font-size: 0.9em; }
 
 </style>
