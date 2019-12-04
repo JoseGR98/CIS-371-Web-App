@@ -1,28 +1,32 @@
 <template>
   <v-app>
+
     <v-app-bar
       app
       color="#46CB90"
       dark
       min-height="90px"
+      hide-on-scroll="true"
       
       >
-      <v-row>
-        <v-col>
+      <div>
       <v-img
           contain
           src="https://i.imgur.com/451GTdB.png"
           transition="scale-transition"
           width="200"
         />
-        </v-col>
-      <v-col >
-        <v-btn  @click="logOut" width="500" >
+      </div>
+      <v-spacer></v-spacer>
+      <v-btn rounded="true" @click="goToHistory" > MY ACCOUNT
+        </v-btn>
+        <div>
+          
+        <v-btn rounded="true"  @click="logOut" align-end>
         Sign Out
       </v-btn>
-      </v-col>
-      </v-row>
-      <v-spacer></v-spacer>
+        </div>
+      
 
     </v-app-bar>
     <v-content>
@@ -41,8 +45,13 @@ export default {
       AppAUTH.signOut().then(() => {
       this.$router.push({ path: "/"});
       });
-      }
+      },
+    goToHistory() {
+      this.$router.push({ path: "/MyAccount" });
+    }
   },
+
+ 
 }
 
 </script>
