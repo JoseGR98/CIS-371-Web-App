@@ -102,7 +102,5 @@ export default {
     width: 40%;
     padding: 10px;
 }
-    /* #info {
-      width: 10%;
-    } */
+
 </style>

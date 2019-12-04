@@ -7,17 +7,21 @@
       min-height="90px"
       
       >
-      <div>
+      <v-row>
+        <v-col>
       <v-img
           contain
           src="https://i.imgur.com/451GTdB.png"
           transition="scale-transition"
           width="200"
         />
-        </div>
-    
-      
-
+        </v-col>
+      <v-col >
+        <v-btn  @click="logOut" width="500" >
+        Sign Out
+      </v-btn>
+      </v-col>
+      </v-row>
       <v-spacer></v-spacer>
 
     </v-app-bar>
@@ -28,11 +32,19 @@
 </template>
 
 <script>
-//import { AppAUTH } from "./db-init.js";
+import { AppAUTH } from "./db-init.js";
 
 export default {
   name: 'App',
+  methods: {
+    logOut() {
+      AppAUTH.signOut().then(() => {
+      this.$router.push({ path: "/"});
+      });
+      }
+  },
 }
+
 </script>
 
 <style>
@@ -43,5 +55,10 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+#left {
+  float: right;
+  align-self: right;
+  align-content: right;
 }
 </style>
