@@ -3,20 +3,14 @@
       <h1> Order History </h1>
         <div class="Grid">
           <table>
-            <th>
-                <tr>
-                    <td>Item Name</td>
-                    <td>Quantity</td>
-                    <td>Price</td>
-                    <td>Transaction</td>
-                </tr>
-            </th>
-            <tr v-for="(products, pos) in products" :key="pos">
-            <td>{{pos}}</td>
-            <td>{{products.product}}</td>
-            <td>{{products.quantity}}</td>
-            <td>{{products.typeOfTransaction}}</td>
+            <div v-for="(items, pos2) in products" :key="pos2">
+            <tr v-for="(products, pos) in items" :key="pos">
+            <td>Product: {{products.product}}</td>
+            <td>Quantity: {{products.quantity}}</td>
+            <td>Price: ${{products.price}}</td>
+            <td>Transaction: {{products.typeOfTransaction}}</td>
             </tr>
+            </div>
             </table>
         </div> 
   </v-container>
@@ -32,8 +26,8 @@ export default {
       products: []
   } ),
     mounted() {
-        AppDB.ref("orderHistory").on("child_added", this.additem);
-          AppAUTH.onAuthStateChanged((user) => {
+      AppDB.ref("orderHistory").on("child_added", this.additem);
+      AppAUTH.onAuthStateChanged((user) => {
       if (user) {
         this.userID = user.uid;
       } else {
@@ -43,13 +37,26 @@ export default {
     },
   methods: {
     additem(snapshot){
-        const items = snapshot.val();
-        this.products.push({...items, mykey:snapshot.key})
-      },
+       const item = snapshot.val();
+       if(AppAUTH.currentUser.uid === snapshot.key){
+        this.products.push({...item, mykey:snapshot.key})
+        }else{
+          //none
+        }
+      }
   }
 }
 </script>
 
 <style>
+
+
+.Grid td {
+      padding: 10px;
+      border: solid 1px black; }
+
+.Grid th  {
+      padding : 40px 20px;
+      font-size: 0.9em; }
 
 </style>
